@@ -1,7 +1,6 @@
 let cardArray = [];
 
 if(localStorage.cardArray){
-  cardArray = localStorage.cardArray;
   cardArray = localStorage.getItem("cardArray");
   cardArray = JSON.parse(cardArray);
 }else
