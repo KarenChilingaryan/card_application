@@ -1,0 +1,79 @@
+body{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    height: 100vh;
+}
+
+.container{
+    display: flex;
+    width: 100%;
+    height: 44em;
+    
+}
+
+.block{
+    padding: 30px 0;
+    position: relative;
+    background-color: #4074a0;
+    width: 70%;
+}
+
+.instruction{
+    background-color: #f2f2f2;
+    width: 30%;
+    height: 100%;
+}
+
+.header{
+    position: absolute;
+    top: 0;
+    height: 30px;
+    width: 100%;
+    background-color: #ae9779;
+    box-shadow: 0px 3px 6px 0px #888888;
+}
+
+.header button{
+    cursor: pointer;
+}
+
+.footer{
+    position: absolute;
+    height: 30px;
+    width: 100%;
+    background-color: #ae9779;
+    box-shadow: 0 -1px 4px 0px #888888;
+    bottom: 0;
+}
+
+.content{
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    justify-content: space-evenly;
+}
+
+.card{
+    width: 200px;
+    height: 200px;
+    background-color: #f2f2f2;
+    margin: 20px 10px;
+    text-align: center;
+}
+
+.delete{
+    margin: 0 0 0 176px;
+    cursor: pointer;
+    background-color: #4074a06e;
+}
+
+.delete:hover{
+    background-color: #3354716e;
+}
+
+.cardText{
+    font-size: 30px;
+    margin: 60px;
+}
