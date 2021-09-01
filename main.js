@@ -1,7 +1,17 @@
 let cardArray = [];
+
+if(localStorage.cardArray){
+  cardArray = localStorage.cardArray;
+  cardArray = localStorage.getItem("cardArray");
+  cardArray = JSON.parse(cardArray);
+}else
+  localStorage.setItem('cardArray', JSON.stringify([]));
+
+function localStor(arr){
+  localStorage.setItem('cardArray', JSON.stringify(arr));
+}
 const CONTENT = ".content";
 const DIV = "div";
-
 function addCard() {
   const randomNum = Math.floor(Math.random() * 100);
   const randomColor = Math.floor(Math.random()*16777215).toString(16);
@@ -11,6 +21,7 @@ function addCard() {
   }
   cardArray.push(obj);
   createCard(obj);
+  localStor(cardArray);
 }
 
 function createCard(obj) {
@@ -19,7 +30,6 @@ function createCard(obj) {
   let card = document.createElement(DIV);
   card.className = "card";
   card.style.backgroundColor = `#${obj.color}`;
-  console.log(card);
 
   let cardText = document.createElement(DIV);
   cardText.className = "cardText";
@@ -37,7 +47,18 @@ function createCard(obj) {
   card.append(cardText);
 
   content.append(card);
+  localStor(cardArray);
 }
+
+
+function createLoop(arr){
+  const arrLength = arr.length;
+  for(let i = 0; i < arrLength; i++){
+    createCard(arr[i]);
+  }
+}
+
+createLoop(cardArray);
 
 function sortCard() {
   let content = document.querySelector(CONTENT);
@@ -46,10 +67,8 @@ function sortCard() {
   newCardArr.sort(function (a, b) {
     return a.random - b.random;
   });
-  const cardArrLength = cardArray.length;
-  for (let i = 0; i < cardArrLength; i++) {
-    createCard(newCardArr[i]);
-  }
+  createLoop(newCardArr);
+  localStor(newCardArr);
 }
 
 function deleteCard(event) {
@@ -63,4 +82,6 @@ function deleteCard(event) {
       break;
     }
   }
+  localStor(cardArray);
 }
+
