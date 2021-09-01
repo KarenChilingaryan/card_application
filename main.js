@@ -2,37 +2,41 @@ let cardArray = [];
 const CONTENT = ".content";
 const DIV = "div";
 
-function loading() {
-  body = document.querySelector("body");
-  body.style.height = window.innerHeight - 1 + "px";
-}
-
 function addCard() {
   const randomNum = Math.floor(Math.random() * 100);
-  cardArray.push(randomNum);
-  createCard(randomNum);
+  const randomColor = Math.floor(Math.random()*16777215).toString(16);
+  const obj ={
+    random: randomNum,
+    color: randomColor
+  }
+  cardArray.push(obj);
+  createCard(obj);
 }
 
-function createCard(n) {
+function createCard(obj) {
+  
   let content = document.querySelector(CONTENT);
   let card = document.createElement(DIV);
   card.className = "card";
+  card.style.backgroundColor = `#${obj.color}`;
+  console.log(card);
 
   let cardText = document.createElement(DIV);
   cardText.className = "cardText";
-  cardText.innerText = n + "";
+  cardText.innerText = `${obj.random}`;
 
   let deleteButton = document.createElement("button");
   deleteButton.className = "delete";
   deleteButton.innerText = "X";
-  deleteButton.dataset.id = n;
+  deleteButton.dataset.id = obj.random;
+  deleteButton.dataset.color = obj.color;
   deleteButton.addEventListener("click", (event) => {
     deleteCard(event);
   });
   card.append(deleteButton);
   card.append(cardText);
 
-  content.prepend(card);
+  content.append(card);
 }
 
 function sortCard() {
@@ -40,9 +44,9 @@ function sortCard() {
   content.innerHTML = "";
   const newCardArr = [...cardArray];
   newCardArr.sort(function (a, b) {
-    return b - a;
+    return a.random - b.random;
   });
-  let cardArrLength = cardArray.length;
+  const cardArrLength = cardArray.length;
   for (let i = 0; i < cardArrLength; i++) {
     createCard(newCardArr[i]);
   }
@@ -50,10 +54,11 @@ function sortCard() {
 
 function deleteCard(event) {
   event.target.parentElement.remove();
-  let m = event.target.dataset.id;
-  let n = cardArray.length;
-  for (let i = 0; i < n; i++) {
-    if (cardArray[i] == m) {
+  const id = event.target.dataset.id;
+  const color = event.target.dataset.color;
+  const cardArrLength = cardArray.length;
+  for (let i = 0; i < cardArrLength; i++) {
+    if (cardArray[i].random == id && cardArray[i].color == color) {
       cardArray.splice(i, 1);
       break;
     }

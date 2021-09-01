@@ -4,16 +4,15 @@ body{
     border: 0;
     height: 100vh;
 }
-
 .container{
     display: flex;
     width: 100%;
-    height: 44em;
+    height: 100%;
     
 }
 
 .block{
-    padding: 30px 0;
+    padding: 37px 0;
     position: relative;
     background-color: #4074a0;
     width: 70%;
@@ -36,6 +35,7 @@ body{
 
 .header button{
     cursor: pointer;
+    margin: 4px;
 }
 
 .footer{
@@ -49,30 +49,28 @@ body{
 
 .content{
     height: 100%;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     overflow-y: auto;
-    justify-content: space-evenly;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 1em;
 }
 
 .card{
-    width: 200px;
     height: 200px;
     background-color: #f2f2f2;
-    margin: 20px 10px;
+    margin: 20px auto;
     text-align: center;
+    border: 1px solid antiquewhite;
 }
-
 .delete{
     margin: 0 0 0 176px;
     cursor: pointer;
     background-color: #4074a06e;
 }
-
 .delete:hover{
     background-color: #3354716e;
 }
-
 .cardText{
     font-size: 30px;
     margin: 60px;
